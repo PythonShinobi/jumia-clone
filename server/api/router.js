@@ -56,6 +56,18 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+// GET endpoint to retrieve a product details by it's category.
+router.get("/products/category/:category", async (req, res) => {
+  const { category } = req.params;
+  try {
+    const products = await db.query("SELECT * FROM products WHERE category = $1", [category]);
+    res.json(products.rows);
+  } catch (error) {
+    console.error("Error fetching products by category:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // Define the POST `/products` endpoint to handle product creation requests from the frontend.
 router.post("/products", upload.single('image'), async (req, res) => {
   // Extracting data from the request body.
