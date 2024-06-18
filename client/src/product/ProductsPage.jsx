@@ -1,6 +1,7 @@
 // client/src/product/ProductsPage.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
@@ -95,9 +96,11 @@ const ProductsPage = () => {
                       </Typography>                    
                       {/* Action buttons */}
                       <div className="d-flex justify-content-between mt-2">
-                        <Button variant="contained" color="primary">
-                          Buy Now
-                        </Button>
+                        <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+                          <Button variant="contained" color="primary">
+                            Buy Now
+                          </Button>
+                        </Link>
                         <Button variant="outlined" color="primary">
                           Add to Cart
                         </Button>
