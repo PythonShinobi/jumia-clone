@@ -30,6 +30,32 @@ router.get("/", (req, res) => {
   res.send("Backend server is running🙂");
 });
 
+// GET endpoint to retrieve products.
+router.get("/products", async (req, res) => {
+  try {
+    // Fetch data from the database.
+    const products = await db.query("SELECT * FROM products");
+    // Return the fetched products data.
+    res.json(products.rows);
+  } catch (error) {
+    console.error("Error fetching products:", error.message);
+    // Send an error response with a status code of 500 (Internal Server Error) and an error message.
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// GET endpoint to retrieve a product by it's ID.
+router.get("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await db.query("SELECT * FROM products WHERE id = $1", [id]);
+    res.json(product.rows[0]);
+  } catch (error) {
+    console.error("Error fetching product:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // Define the POST `/products` endpoint to handle product creation requests from the frontend.
 router.post("/products", upload.single('image'), async (req, res) => {
   // Extracting data from the request body.
@@ -49,7 +75,8 @@ router.post("/products", upload.single('image'), async (req, res) => {
     // Accessing rows[0] gives you the first (and only) row in the result set.
     const product = newProduct.rows[0];
 
-    // Sending a JSON response with the newly created product data.
+    // Sending a JSON response back to the client with the details 
+    // of newly created product data.
     res.json({
       id: product.id, // Unique identifier for the product.
       title: product.name, // Name of the product.
