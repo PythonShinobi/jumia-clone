@@ -26,28 +26,28 @@ const Navbar = () => {
     >
       <List>
         <ListItem component={NavLink} to="/">
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="Home" />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Home" />
         </ListItem>
         <ListItem component={NavLink} to="/products">
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="Products" />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Products" />
         </ListItem>
         <ListItem component={NavLink} to="/about">
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="About" />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="About" />
         </ListItem>
         <ListItem component={NavLink} to="/contact">
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="Contact" />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Contact" />
         </ListItem>
         <ListItem component={NavLink} to="/login">
-          <PersonIcon sx={{ mr: 1, color: "white" }} />
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="Login" />
+          <PersonIcon sx={{ mr: 1, color: "black" }} />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Login" />
         </ListItem>
         <ListItem component={NavLink} to="/register">
-          <PersonAddIcon sx={{ mr: 1, color: "white" }} />
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary="Register" />
+          <PersonAddIcon sx={{ mr: 1, color: "black" }} />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Register" />
         </ListItem>
         <ListItem component={NavLink} to="/cart">
-          <ShoppingCartIcon sx={{ mr: 1, color: "white" }} />
-          <ListItemText primaryTypographyProps={{ sx: { color: 'white' } }} primary={`Cart (${cartItemsCount})`} />
+          <ShoppingCartIcon sx={{ mr: 1, color: "black" }} />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary={`Cart (${cartItemsCount})`} />
         </ListItem>
       </List>
     </Box>
@@ -85,15 +85,15 @@ const Navbar = () => {
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Button component={NavLink} to="/login" color="inherit" sx={{ m: 1 }} activeClassName="active">
-              <PersonIcon sx={{ mr: 1, color: "white" }} />
+              <PersonIcon sx={{ mr: 1 }} />
               Login
             </Button>
             <Button component={NavLink} to="/register" color="inherit" sx={{ m: 1 }} activeClassName="active">
-              <PersonAddIcon sx={{ mr: 1, color: "white" }} />
+              <PersonAddIcon sx={{ mr: 1 }} />
               Register
             </Button>
             <Button component={NavLink} to="/cart" color="inherit" sx={{ m: 1 }} activeClassName="active">
-              <ShoppingCartIcon sx={{ mr: 1, color: "white" }} />
+              <ShoppingCartIcon sx={{ mr: 1}} />
               Cart ({cartItemsCount})
             </Button>
           </Box>
