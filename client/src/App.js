@@ -6,12 +6,14 @@ import "./App.css"
 import AdminForm from './admin/AdminForm';
 import ProductsPage from './product/ProductsPage';
 import ProductDetailsPage from './product/ProductsDetailsPage';
+import Home from './home/Home';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         {/* Define routes for different pages */}
+        <Route path="/" element={<Home />} />
         <Route path="/admin" element={<AdminForm />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
