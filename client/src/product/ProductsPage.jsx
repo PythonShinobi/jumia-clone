@@ -6,6 +6,8 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 
+import Navbar from "../navbar/Navbar";
+
 const ProductsPage = () => {
   // State variables to manage products, filter, loading status, and original products.
   const [products, setProducts] = useState([]); // State to store products fetched from the API.
@@ -52,6 +54,7 @@ const ProductsPage = () => {
   // JSX rendering
   return (
     <div className="products-container">
+      <Navbar />
       <Container>    
         {/* Filter buttons */}
         <div style={{ marginBottom: '20px' }}>

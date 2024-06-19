@@ -9,6 +9,7 @@ import { Container, Grid, Card, CardContent, CardMedia, Typography, Button } fro
 import { useParams } from "react-router-dom";
 
 import "./styles.css";
+import Navbar from "../navbar/Navbar";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -56,6 +57,7 @@ const ProductDetailsPage = () => {
 
   return (
     <div className="products-details-container">
+      <Navbar />
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
