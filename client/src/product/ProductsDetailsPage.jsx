@@ -20,7 +20,7 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/${id}`);
+        const response = await axios.get(`http://192.168.0.17:5000/products/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -31,7 +31,7 @@ const ProductDetailsPage = () => {
     // Function to fetch similar products based on category
     const fetchSimilarProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/products/category/${product.category}`);
+        const response = await axios.get(`http://192.168.0.17:5000/products/category/${product.category}`);
         setSimilarProducts(response.data);
         setLoadingSimilarProducts(false);
       } catch (error) {
@@ -62,7 +62,7 @@ const ProductDetailsPage = () => {
             <CardMedia
               component="img"
               height="550"
-              image={`http://localhost:5000/uploads/${product.image}`}
+              image={`http://192.168.0.17:5000/uploads/${product.image}`}
               alt={product.name}
               style={{ objectFit: 'cover', width: '100%', border: '1px solid #ccc' }}
             />
@@ -104,7 +104,7 @@ const ProductDetailsPage = () => {
                   <CardMedia
                     component="img"
                     height="250"
-                    image={`http://localhost:5000/uploads/${similarProduct.image}`}
+                    image={`http://192.168.0.17:5000/uploads/${similarProduct.image}`}
                     alt={similarProduct.name}
                     style={{ objectFit: 'cover', width: '100%' }}
                   />

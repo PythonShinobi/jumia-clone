@@ -18,7 +18,7 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
       try {
         // Fetch products from the API.
-        const response = await axios.get('http://localhost:5000/products');
+        const response = await axios.get('http://192.168.0.17:5000/products');
         // Update state with fetched products and original products.
         setProducts(response.data);        
         setOriginalProducts(response.data);
@@ -85,7 +85,7 @@ const ProductsPage = () => {
                     <CardMedia
                       component="img"
                       height="350"
-                      image={`http://localhost:5000/uploads/${product.image}`}
+                      image={`http://192.168.0.17:5000/uploads/${product.image}`}
                       alt={product.name}
                       style={{ objectFit: 'cover', width: '100%' }}
                     />
