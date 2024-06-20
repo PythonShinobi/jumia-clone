@@ -6,8 +6,10 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Button, Fab } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useDispatch } from "react-redux";
 
 import Navbar from "../navbar/Navbar";
+import { addCart } from "../redux/action";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]); // State to store products fetched from the API
@@ -15,6 +17,13 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true); // State to manage loading status
   const [originalProducts, setOriginalProducts] = useState([]); // State to store the original list of products
   const [showBackToTop, setShowBackToTop] = useState(false); // State to show Back to Top button
+
+  const dispatch = useDispatch();  // Get the dispatch function from the Redux store.
+
+  const addProduct = (product) => {
+    // Dispatch an action to add the product to the cart.
+    dispatch(addCart(product));
+  };
 
   useEffect(() => {
     // Function to fetch products from the API
@@ -133,7 +142,7 @@ const ProductsPage = () => {
                             Buy Now
                           </Button>
                         </Link>
-                        <Button variant="outlined" color="primary">
+                        <Button variant="outlined" color="primary" onClick={() => addProduct(product)}>
                           Add to Cart
                         </Button>
                       </div>

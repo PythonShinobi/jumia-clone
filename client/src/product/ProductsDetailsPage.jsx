@@ -7,9 +7,11 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./styles.css";
 import Navbar from "../navbar/Navbar";
+import { addCart } from "../redux/action";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -17,6 +19,13 @@ const ProductDetailsPage = () => {
   const [loading, setLoading] = useState(true);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loadingSimilarProducts, setLoadingSimilarProducts] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const addProduct = (product) => {
+    // Dispatch an action to add the product to the cart.
+    dispatch(addCart(product));
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -76,7 +85,7 @@ const ProductDetailsPage = () => {
                 <Typography variant="h6">Price: ${product.price}</Typography>
                 <Typography variant="body1">{product.description}</Typography>
                 <Typography variant="body2">Rating: {product.rating.rate} ({product.rating.count} reviews)</Typography>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={() => addProduct(product)}>
                   Add to Cart
                 </Button>
               </CardContent>
