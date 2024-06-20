@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Box, Container } from "@mui/material";
+import { useSelector } from "react-redux";
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -10,7 +11,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import "./Navbar.css";
 
 const Navbar = () => {
-  const cartItemsCount = 0;
+  const cartItemsCount = useSelector(state => state.handleCart);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -47,7 +48,7 @@ const Navbar = () => {
         </ListItem>
         <ListItem component={NavLink} to="/cart">
           <ShoppingCartIcon sx={{ mr: 1, color: "black" }} />
-          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary={`Cart (${cartItemsCount})`} />
+          <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary={`Cart (${cartItemsCount.length})`} />
         </ListItem>
       </List>
     </Box>
@@ -94,7 +95,7 @@ const Navbar = () => {
             </Button>
             <Button component={NavLink} to="/cart" color="inherit" sx={{ m: 1 }} activeClassName="active">
               <ShoppingCartIcon sx={{ mr: 1}} />
-              Cart ({cartItemsCount})
+              Cart ({cartItemsCount.length})
             </Button>
           </Box>
         </Toolbar>
