@@ -2,6 +2,7 @@
 import { Router } from "express";
 import multer from "multer";
 import path from "path";
+import nodemailer from "nodemailer";
 import env from "dotenv";
 
 import db from "./db.js";
@@ -9,6 +10,15 @@ import db from "./db.js";
 env.config();
 
 const router = Router();
+
+// Create a Nodemailer transporter.
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL,
+    pass: process.env.GMAIL_PASSWORD
+  }
+});
 
 // Mutler setup for handling file uploads.
 const storage = multer.diskStorage({
@@ -24,6 +34,38 @@ const storage = multer.diskStorage({
 
 // Create a middleware that can be used to handle file uploads in Express routes.
 const upload = multer({ storage: storage });
+
+// Verify the transporter configuration.
+transporter.verify((error, success) => {
+  if (error) {
+      console.error(`Transporter verification failed: ${error}`);
+  } else {
+      console.log("Transporter is ready to send emails");
+  }
+});
+
+// POST endpoint to send emails.
+router.post("/send-email", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  console.log(`Received email request: ${name}, ${email}, ${message}`);
+
+  try {
+      // Send email using Nodemailer.
+      let info = await transporter.sendMail({
+          from: email,
+          to: process.env.GMAIL,
+          subject: "New Contact Message",
+          text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+      });
+
+      console.log('Email sent:', info.messageId);
+      res.send("Email has been sent🙂.");
+  } catch (error) {
+      console.error(`Error sending email: ${error}`);
+      res.status(500).send("Failed to send email😞.");
+  }
+});
 
 // Message to check if the server is working as expected.
 router.get("/", (req, res) => {
