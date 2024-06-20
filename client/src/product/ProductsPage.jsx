@@ -88,6 +88,9 @@ const ProductsPage = () => {
           <Button onClick={() => filterProducts("hoodies")} variant={filter === "hoodies" ? "contained" : "outlined"}>Hoodies</Button>
           <Button onClick={() => filterProducts("light lamp")} variant={filter === "light lamp" ? "contained" : "outlined"}>Light Lamps</Button>
           <Button onClick={() => filterProducts("accessories")} variant={filter === "accessories" ? "contained" : "outlined"}>Accessories</Button>
+          <Button onClick={() => filterProducts("shoes")} variant={filter === "shoes" ? "contained" : "outlined"}>Shoes</Button>
+          <Button onClick={() => filterProducts("cosplay")} variant={filter === "cosplay" ? "contained" : "outlined"}>Cosplay</Button>
+          <Button onClick={() => filterProducts("t-shirts")} variant={filter === "t-shirts" ? "contained" : "outlined"}>T-shirts</Button>
         </div>
         
         {/* Grid to display products */}
