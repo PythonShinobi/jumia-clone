@@ -7,6 +7,7 @@ import cors from "cors";
 import env from "dotenv";
 
 import router from "./router.js";
+import loginRouter from "./login.js";
 
 // Configure the server.
 env.config();
@@ -46,6 +47,9 @@ app.use(cookieParser());
 
 // Serve static files from the uploads directory
 app.use('/uploads', express.static('uploads'));
+
+// Use the login router for handling `/login` requests.
+app.use("/", loginRouter);
 
 // Use the router.
 app.use("/", router);
