@@ -6,6 +6,8 @@ import nodemailer from "nodemailer";
 import env from "dotenv";
 
 import db from "./db.js";
+import { getUser } from "./getUser.js";
+import register from "./register.js";
 
 env.config();
 
@@ -71,6 +73,12 @@ router.post("/send-email", async (req, res) => {
 router.get("/", (req, res) => {
   res.send("Backend server is running🙂");
 });
+
+// Define the route for fetching user data.
+router.get('/user', getUser);
+
+// Define the POST /register endpoint
+router.post('/register', register);
 
 // GET endpoint to retrieve products.
 router.get("/products", async (req, res) => {
