@@ -8,6 +8,7 @@ import env from "dotenv";
 import db from "./db.js";
 import { getUser } from "./getUser.js";
 import register from "./register.js";
+import logout from "./auth/logout.js";
 
 env.config();
 
@@ -79,6 +80,9 @@ router.get('/user', getUser);
 
 // Define the POST /register endpoint
 router.post('/register', register);
+
+// Define the GET /logout endpoint.
+router.get("/logout", logout);
 
 // GET endpoint to retrieve products.
 router.get("/products", async (req, res) => {
