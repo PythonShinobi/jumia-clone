@@ -25,7 +25,13 @@ const fetcher = async (url) => {
   }
 };
 
-// Custom hook to manage user authentication and redirection logic.
+/**
+ * Custom hook to manage user authentication and redirection logic.
+ * @param {Object} options - Options object.
+ * @param {string} options.redirectTo - Path to redirect if user is not authenticated.
+ * @param {boolean} options.redirectIfFound - Redirect if user is already authenticated.
+ * @returns {Object|null} The user object if authenticated and data fetch successful, or null if there's an error or user is not authenticated.
+ */
 export function useUser({ redirectTo, redirectIfFound } = {}) {
   const navigate = useNavigate();
 
