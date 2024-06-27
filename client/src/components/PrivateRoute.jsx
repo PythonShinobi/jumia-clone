@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useUser } from "../redux/hooks";
 
 /**
- * Private route component to protect cart route that requires authentication.
+ * Private route component to protect routes that requires authentication.
  * @param {object} props - Component props.
  * @param {JSX.Element} props.children - Component to render if user is authenticated.
  * @returns {JSX.Element} - Either redirects to login page or renders the child component.

@@ -1,4 +1,4 @@
-// client/src/product/ProductDetailsPage.jsx
+// client/src/product/ProductsDetailsPage.jsx
 import React, { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import "./styles.css";
 import Navbar from "../navbar/Navbar";
 import { addCart } from "../redux/action";
+import { useUser } from "../redux/hooks"; // Import useUser hook to check user's authentication status
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -21,10 +22,17 @@ const ProductDetailsPage = () => {
   const [loadingSimilarProducts, setLoadingSimilarProducts] = useState(true);
 
   const dispatch = useDispatch();
+  const user = useUser(); // Get the user object from Redux store
 
   const addProduct = (product) => {
-    // Dispatch an action to add the product to the cart.
-    dispatch(addCart(product));
+    // Dispatch an action to add the product to the cart, only if user is authenticated
+    if (user) {
+      dispatch(addCart(product));
+    } else {
+      // Optionally handle not authenticated action (e.g., show a message or redirect)
+      console.log("User not authenticated. Redirecting to login page.");
+      // Redirect user to login page or show a message
+    }
   };
 
   useEffect(() => {
@@ -85,7 +93,12 @@ const ProductDetailsPage = () => {
                 <Typography variant="h6">Price: ${product.price}</Typography>
                 <Typography variant="body1">{product.description}</Typography>
                 <Typography variant="body2">Rating: {product.rating.rate} ({product.rating.count} reviews)</Typography>
-                <Button variant="contained" color="primary" onClick={() => addProduct(product)}>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={() => addProduct(product)}
+                  disabled={!user} // Disable button if user is not authenticated
+                >
                   Add to Cart
                 </Button>
               </CardContent>

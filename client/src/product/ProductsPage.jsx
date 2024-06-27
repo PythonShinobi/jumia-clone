@@ -1,4 +1,3 @@
-// client/src/product/ProductsPage.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -10,6 +9,7 @@ import { useDispatch } from "react-redux";
 
 import Navbar from "../navbar/Navbar";
 import { addCart } from "../redux/action";
+import { useUser } from "../redux/hooks"; // Import useUser hook to check user's authentication status
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]); // State to store products fetched from the API
@@ -19,10 +19,17 @@ const ProductsPage = () => {
   const [showBackToTop, setShowBackToTop] = useState(false); // State to show Back to Top button
 
   const dispatch = useDispatch();  // Get the dispatch function from the Redux store.
+  const user = useUser(); // Get the user object from Redux store
 
   const addProduct = (product) => {
-    // Dispatch an action to add the product to the cart.
-    dispatch(addCart(product));
+    // Dispatch an action to add the product to the cart, only if user is authenticated
+    if (user) {
+      dispatch(addCart(product));
+    } else {
+      // Optionally handle not authenticated action (e.g., show a message or redirect)
+      console.log("User not authenticated. Redirecting to login page.");
+      // Redirect user to login page or show a message
+    }
   };
 
   useEffect(() => {
@@ -142,7 +149,12 @@ const ProductsPage = () => {
                             Buy Now
                           </Button>
                         </Link>
-                        <Button variant="outlined" color="primary" onClick={() => addProduct(product)}>
+                        <Button 
+                          variant="outlined" 
+                          color="primary" 
+                          onClick={() => addProduct(product)} 
+                          disabled={!user} // Disable button if user is not authenticated
+                        >
                           Add to Cart
                         </Button>
                       </div>
