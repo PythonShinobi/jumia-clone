@@ -4,6 +4,7 @@ import passport from 'passport';
 
 import { localStrategy } from './auth/password-local.js';
 import { setLoginSession } from './auth/auth.js';
+import setAdmin from "./middleware/setAdmin.js";
 
 const router = Router();
 
@@ -35,13 +36,16 @@ const authenticate = (strategy, req, res) =>
   });
 
 // Define a POST request handler for the /login endpoint.
-router.post('/login', async (req, res) => {
-  try {
+router.post('/login', async (req, res) => {  
+  try {    
     // Attempt to authenticate the user using the local strategy.
-    const user = await authenticate('local', req, res);
+    const user = await authenticate('local', req, res);        
+
+    const updatedUser = await setAdmin(user);    
 
     // Create a session object with user information.
-    const session = { ...user };    
+    const session = { ...updatedUser };    
+    // console.log(session);
 
     // Set the login session using a custom function (likely setting a cookie or JWT)
     await setLoginSession(res, session);
