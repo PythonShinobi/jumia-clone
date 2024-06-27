@@ -40,6 +40,7 @@ const Login = () => {
         setTimeout(() => {
           navigate("/"); // Redirect after 0.5 seconds.
         }, 500);
+        window.location.reload(); // Trigger a refresh
       } else {
         // If login fails, throw an error with the response data.
         throw new Error(response.data.message);
