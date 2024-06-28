@@ -39,8 +39,7 @@ const Login = () => {
         // If login is successful, redirect to '/'.
         setTimeout(() => {
           navigate("/"); // Redirect after 0.5 seconds.
-        }, 500);
-        window.location.reload(); // Trigger a refresh
+        }, 500);        
       } else {
         // If login fails, throw an error with the response data.
         throw new Error(response.data.message);
