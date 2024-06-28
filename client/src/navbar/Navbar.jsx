@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Box, Container } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -11,12 +11,14 @@ import axios from 'axios';
 
 import "./Navbar.css";
 import { useUser } from "../redux/hooks";
+import { clearCart } from "../redux/action";
 
 const Navbar = () => {
   const cartItemsCount = useSelector(state => state.handleCart);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const user = useUser(); // Use the useUser hook to get the current user
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -26,6 +28,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await axios.get('http://localhost:5000/logout', { withCredentials: true });
+      dispatch(clearCart());  // Clear items from the cart when user logs out.
       navigate('/'); // Redirect to home page after logout.
       window.location.reload(); // Trigger a refresh.
     } catch (error) {
