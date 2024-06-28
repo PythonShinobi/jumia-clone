@@ -7,10 +7,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useUser } from "../redux/hooks";
 import axios from 'axios';
 
 import "./Navbar.css";
+import { useUser } from "../redux/hooks";
 
 const Navbar = () => {
   const cartItemsCount = useSelector(state => state.handleCart);
@@ -26,11 +26,14 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await axios.get('http://localhost:5000/logout', { withCredentials: true });
-      navigate('/'); // Redirect to home page after logout
+      navigate('/'); // Redirect to home page after logout.
+      window.location.reload(); // Trigger a refresh.
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
+  
+  // console.log("User object:", user?.isadmin);
 
   const drawerItems = (
     <Box
@@ -65,10 +68,17 @@ const Navbar = () => {
           </>
         )}
         {user && (
-          <ListItem onClick={handleLogout}>
-            <PersonIcon sx={{ mr: 1, color: "black" }} />
-            <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Logout" />
-          </ListItem>
+          <>
+            {user?.isadmin && (
+              <ListItem component={NavLink} to="/admin">
+                <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Add Items" />
+              </ListItem>
+            )}
+            <ListItem onClick={handleLogout}>
+              <PersonIcon sx={{ mr: 1, color: "black" }} />
+              <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Logout" />
+            </ListItem>
+          </>
         )}
         <ListItem component={NavLink} to="/cart">
           <ShoppingCartIcon sx={{ mr: 1, color: "black" }} />
@@ -107,6 +117,11 @@ const Navbar = () => {
             <Button component={NavLink} to="/contact" color="inherit" activeClassName="active">
               Contact
             </Button>
+            {user && user?.isadmin && ( // Show "Add Items" in Toolbar for admin
+              <Button component={NavLink} to="/admin" color="inherit" sx={{ ml: 2 }} activeClassName="active">
+                Add Items
+              </Button>
+            )}
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {!user && (
