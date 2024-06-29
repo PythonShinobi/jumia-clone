@@ -17,6 +17,9 @@ const Checkout = () => {
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
 
+  const [successMessage, setSuccessMessage] = useState("");  // State for success message.
+  const [errorMessage, setErrorMessage] = useState("");  // State for error message.
+
   const cart = useSelector((state) => state.handleCart); // Get cart items from Redux store.
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,12 +49,21 @@ const Checkout = () => {
       const response = await axios.post(checkoutUrl, orderData, { withCredentials: true });
       console.log("Order placed successfully:", response.data);
 
-      if (response.status === 200) {
+      if (response.status === 200) {        
+        setSuccessMessage("Order placed successfully!"); // Set success message.
+        setErrorMessage("");  // Clear the error message.
         dispatch(clearCart());  // Clear items from the cart when order has been placed.
-        navigate("/"); // Navigate to home page.
+        setTimeout(() => {
+          navigate("/"); // Navigate to home page after a delay
+        }, 1500); // Delay for 1.5 seconds before redirecting (adjust as needed).
       }    
     } catch (error) {
       console.error("Error placing order:", error);      
+      if (error.response && error.response.status === 404) {
+        setErrorMessage("Incorrect Email");
+      } else {
+        setErrorMessage("Error placing order");
+      }
     }
   };
 
@@ -137,6 +149,9 @@ const Checkout = () => {
                   </Typography>
                 </Grid>
               </Grid>
+              {/* Display success or error message */}
+              {successMessage && <Typography style={{ color: 'green' }}>{successMessage}</Typography>}
+              {errorMessage && <Typography color="error">{errorMessage}</Typography>}
             </form>
           </CardContent>
         </Card>
