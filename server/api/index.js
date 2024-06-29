@@ -8,6 +8,7 @@ import env from "dotenv";
 
 import router from "./router.js";
 import loginRouter from "./login.js";
+import checkout from "./checkout.js";
 
 // Configure the server.
 env.config();
@@ -50,6 +51,8 @@ app.use('/uploads', express.static('uploads'));
 
 // Use the login router for handling `/login` requests.
 app.use("/", loginRouter);
+
+app.use("/", checkout);
 
 // Use the router.
 app.use("/", router);
