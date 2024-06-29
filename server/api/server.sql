@@ -24,3 +24,38 @@ DELETE FROM users;
 
 -- Reset the id sequence to start from 1.
 ALTER SEQUENCE users_id_seq RESTART WITH 1;
+
+-- Create the orders table
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  postal_code VARCHAR(20) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the order_items table
+CREATE TABLE order_items (
+  id SERIAL PRIMARY KEY,
+  order_id INTEGER NOT NULL REFERENCES orders(id),
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  product_name VARCHAR(100) NOT NULL,
+  quantity INTEGER NOT NULL,
+  price NUMERIC(10, 2) NOT NULL
+);
+
+-- Delete all records from the order_items table.
+DELETE FROM order_items;
+
+-- Reset the id sequence to start from 1.
+ALTER SEQUENCE order_items_id_seq RESTART WITH 1;
+
+-- Delete all records from the orders table.
+DELETE FROM orders;
+
+-- Reset the id sequence to start from 1.
+ALTER SEQUENCE orders_id_seq RESTART WITH 1;
