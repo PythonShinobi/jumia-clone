@@ -110,6 +110,19 @@ router.get("/products/:id", async (req, res) => {
   }
 });
 
+// DELETE endpoint to delete a product by its ID
+router.delete("/products/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Perform database query to delete product by ID
+    await db.query("DELETE FROM products WHERE id = $1", [id]);
+    res.json({ message: `Product with ID ${id} deleted successfully` });
+  } catch (error) {
+    console.error("Error deleting product:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // GET endpoint to retrieve a product details by it's category.
 router.get("/products/category/:category", async (req, res) => {
   const { category } = req.params;
