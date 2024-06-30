@@ -3,11 +3,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Typography, Grid, Card, CardContent, CardMedia, Divider, IconButton } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove, Delete } from '@mui/icons-material';
 
 import './Cart.css';
 import Navbar from "../navbar/Navbar";
-import { addCart, delCart } from "../redux/action";
+import { addCart, delCart, removeCart } from "../redux/action";
 
 const Cart = () => {
   const cart = useSelector((state) => state.handleCart);
@@ -24,6 +24,7 @@ const Cart = () => {
 
   const addItem = (product) => dispatch(addCart(product));
   const removeItem = (product) => dispatch(delCart(product));
+  const deleteCartItem = (product) => dispatch(removeCart(product)); // New function to remove item in cart completely.
 
   const ShowCart = () => {
     let subtotal = 0;
@@ -63,6 +64,9 @@ const Cart = () => {
                           <Typography variant="body1" component="span">{product.qty}</Typography>
                           <IconButton onClick={() => addItem(product)}>
                             <Add />
+                          </IconButton>
+                          <IconButton onClick={() => deleteCartItem(product)} sx={{ color: 'red' }}>
+                            <Delete />
                           </IconButton>
                         </Grid>
                         <Grid item>
