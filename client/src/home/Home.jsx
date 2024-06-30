@@ -153,10 +153,7 @@ const CategorySection = ({ category }) => {
                 <CardContent>
                   <Typography variant="h6" component="div">
                     {product.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {product.description}
-                  </Typography>
+                  </Typography>                  
                 </CardContent>
               </Card>
             </Grid>
