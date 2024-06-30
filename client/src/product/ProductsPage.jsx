@@ -38,6 +38,7 @@ const ProductsPage = () => {
       try {
         // Fetch products from the API
         const response = await axios.get('http://192.168.0.17:5000/products');
+        console.log(response.data);
         // Update state with fetched products and original products
         setProducts(response.data);        
         setOriginalProducts(response.data);
@@ -92,6 +93,23 @@ const ProductsPage = () => {
     // Clean up: remove scroll event listener when component unmounts
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Function to delete a product by ID.
+  const deleteProduct = async (productId) => {
+    try {
+      // Make DELETE request to delete product by ID
+      await axios.delete(`http://192.168.0.17:5000/products/${productId}`);
+      // Filter out the deleted product from the state
+      const updatedProducts = products.filter(product => product.id !== productId);
+      // Update state with the updated products list
+      setProducts(updatedProducts);
+      // Optionally: show a success message or handle UI update
+      console.log(`Product with ID ${productId} deleted successfully.`);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      // Optionally: handle error state or show error message
+    }
+  };
 
   // JSX rendering
   return (
@@ -149,6 +167,16 @@ const ProductsPage = () => {
                             Buy Now
                           </Button>
                         </Link>
+                        {user && user?.isadmin && ( // Only show delete button if user is admin
+                          <Button 
+                            variant="outlined" 
+                            color="secondary" 
+                            onClick={() => deleteProduct(product.id)} 
+                            style={{ marginLeft: '10px' }}
+                          >
+                            Delete
+                          </Button>
+                        )}
                         <Button 
                           variant="outlined" 
                           color="primary" 
