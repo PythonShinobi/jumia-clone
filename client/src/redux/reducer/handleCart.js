@@ -34,6 +34,9 @@ const handleCart = (state = cart, action) => {
       localStorage.removeItem("cart");
       return [];
 
+    case "REMOVE_CART_ITEM":
+      return state.filter((item) => item.id !== action.payload.id);
+
     default:
       return state;
   }
