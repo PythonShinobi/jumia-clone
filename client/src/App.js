@@ -17,6 +17,7 @@ import Checkout from './checkout/Checkout';
 import PageNotFound from './404-page/PageNotFound';
 import PrivateRoute from './components/PrivateRoute';
 import AdminPage from './components/AdminPage';
+import UserProfile from './profile/Profile';
 
 const App = () => {
   return (
@@ -33,6 +34,14 @@ const App = () => {
           <Route path="/product/*" element={<PageNotFound />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:id" element={<ProductDetailsPage />} />
+          <Route 
+            path="/profile" 
+            element={
+              <PrivateRoute>
+                <UserProfile />
+              </PrivateRoute>
+            } 
+          />
           <Route 
             path="/checkout" 
             element={

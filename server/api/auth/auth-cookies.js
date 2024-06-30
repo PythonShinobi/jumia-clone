@@ -7,8 +7,8 @@ import { serialize, parse } from "cookie";  // Import the serialize and parse fu
 // Define the name of the token cookie.
 const TOKEN_NAME = "login-token";
 
-// Define the maximum age of the token in seconds (8 hours).
-export const MAX_AGE = 60 * 60 * 8;
+// Define the maximum age of the token in seconds (60 days).
+export const MAX_AGE = 60 * 60 * 24 * 60;
 
 /**
  * Sets a token cookie in the response header with specified options.
