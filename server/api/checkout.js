@@ -46,12 +46,12 @@ router.post("/checkout", async (req, res) => {
     const orderItemsPromises = cartItems.map(async (item) => {  // For each item, an asynchronous function is executed.
       // Define the SQL query to insert an order item into the order_items table.
       const orderItemQuery = `
-      INSERT INTO order_items (order_id, product_id, product_name, quantity, price)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO order_items (order_id, user_id, product_id, product_name, quantity, price)
+      VALUES ($1, $2, $3, $4, $5, $6)
     `;
 
       // Create an array of values corresponding to the placeholders in the SQL query.
-      const orderItemValues = [orderId, item.id, item.name, item.quantity, item.price];
+      const orderItemValues = [orderId, userId, item.id, item.name, item.quantity, item.price];
 
       // Execute the SQL query with the provided values, inserting the order item into the database.
       await db.query(orderItemQuery, orderItemValues);
