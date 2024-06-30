@@ -1,4 +1,4 @@
-// server/main/db.js
+// server/api/db.js
 import pg from "pg";
 import env from "dotenv";
 

@@ -1,3 +1,5 @@
+-- server/api/server.sql
+
 -- Create the user table.
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
