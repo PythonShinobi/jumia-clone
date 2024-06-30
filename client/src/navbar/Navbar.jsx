@@ -5,8 +5,10 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Drawer, List, ListItem
 import { useSelector, useDispatch } from "react-redux";
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import LoginIcon from '@mui/icons-material/Login';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 import axios from 'axios';
 
 import "./Navbar.css";
@@ -38,6 +40,11 @@ const Navbar = () => {
   
   // console.log("User object:", user?.isadmin);
 
+  // Show a logged in user their profile.
+  const showProfile = async () => {
+    navigate("/profile");
+  };
+
   const drawerItems = (
     <Box
       sx={{ width: 250 }}
@@ -61,11 +68,11 @@ const Navbar = () => {
         {!user && (
           <>
             <ListItem component={NavLink} to="/login">
-              <PersonIcon sx={{ mr: 1, color: "black" }} />
+              <LoginIcon sx={{ mr: 1, color: "black" }} />
               <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Login" />
             </ListItem>
             <ListItem component={NavLink} to="/register">
-              <PersonAddIcon sx={{ mr: 1, color: "black" }} />
+              <HowToRegIcon sx={{ mr: 1, color: "black" }} />
               <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Register" />
             </ListItem>
           </>
@@ -77,6 +84,10 @@ const Navbar = () => {
                 <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Add Items" />
               </ListItem>
             )}
+            <ListItem onClick={showProfile}>
+              <AccountCircleIcon sx={{ mr: 1, color: "black" }} />
+              <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary={`Hi ${user?.username}`} />
+            </ListItem>
             <ListItem onClick={handleLogout}>
               <PersonIcon sx={{ mr: 1, color: "black" }} />
               <ListItemText primaryTypographyProps={{ sx: { color: 'black' } }} primary="Logout" />
@@ -130,20 +141,26 @@ const Navbar = () => {
             {!user && (
               <>
                 <Button component={NavLink} to="/login" color="inherit" sx={{ m: 1 }} activeClassName="active">
-                  <PersonIcon sx={{ mr: 1 }} />
+                  <LoginIcon sx={{ mr: 1, color: "black" }} />
                   Login
                 </Button>
                 <Button component={NavLink} to="/register" color="inherit" sx={{ m: 1 }} activeClassName="active">
-                  <PersonAddIcon sx={{ mr: 1 }} />
+                  <HowToRegIcon sx={{ mr: 1, color: "black" }} />
                   Register
                 </Button>
               </>
             )}
             {user && (
-              <Button onClick={handleLogout} color="inherit" sx={{ m: 1 }} activeClassName="active">
-                <PersonIcon sx={{ mr: 1 }} />
-                Logout
-              </Button>
+              <>
+                <Button onClick={showProfile} color="inherit" sx={{ m: 1 }} activeClassName="active">
+                  <AccountCircleIcon sx={{ mr: 1, color: "black" }} />
+                  Hi, {user?.username}
+                </Button>
+                <Button onClick={handleLogout} color="inherit" sx={{ m: 1 }} activeClassName="active">
+                  <PersonIcon sx={{ mr: 1 }} />
+                  Logout
+                </Button>
+              </>
             )}
             <Button component={NavLink} to="/cart" color="inherit" sx={{ m: 1 }} activeClassName="active">
               <ShoppingCartIcon sx={{ mr: 1 }} />
