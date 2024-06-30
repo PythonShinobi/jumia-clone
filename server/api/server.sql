@@ -28,13 +28,13 @@ ALTER SEQUENCE users_id_seq RESTART WITH 1;
 -- Create the orders table
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL,
-  first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id),
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL,
-  city VARCHAR(100) NOT NULL,
-  postal_code VARCHAR(20) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  postal_code VARCHAR(80) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -42,8 +42,9 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
   id SERIAL PRIMARY KEY,
   order_id INTEGER NOT NULL REFERENCES orders(id),
+  user_id INTEGER NOT NULL REFERENCES users(id),
   product_id INTEGER NOT NULL REFERENCES products(id),
-  product_name VARCHAR(100) NOT NULL,
+  product_name VARCHAR(255) NOT NULL,
   quantity INTEGER NOT NULL,
   price NUMERIC(10, 2) NOT NULL
 );
