@@ -18,4 +18,11 @@ export const clearCart = () => {
     type: "CLEARCART",
     payload: []
   }
-}
+};
+
+export const removeCart = (product) => {
+  return {
+    type: "REMOVE_CART_ITEM",
+    payload: product
+  };
+};
