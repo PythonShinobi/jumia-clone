@@ -4,6 +4,7 @@ import axios from "axios";
 import { TextField, Button, Container, Grid } from "@mui/material";
 
 import "./AdminForm.css";
+import config from "../config";
 
 const AdminForm = () => {
   const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ const AdminForm = () => {
 		data.append("rating", JSON.stringify(formData.rating));
 
 		try {
-			const response = await axios.post("http://192.168.0.17:5000/products", data, {
+			const response = await axios.post(`${config.backendURL}/products`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
