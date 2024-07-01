@@ -1,20 +1,10 @@
 {
   "version": 2,
-  "builds": [{ "src": "server/**/*.js", "use": "@now/node-server" }],
+  "builds": [{ "src": "/api/index.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server/api/router.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "server/api/router.js"
+      "dest": "/api/index.js"
     }
-  ],
-  "functions": {
-    "api/router.js": {
-      "maxDuration": 5,
-      "memory": 512
-    }
-  }
+  ]
 }
