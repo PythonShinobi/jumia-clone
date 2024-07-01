@@ -9,6 +9,9 @@ import db from "./db.js";
 import { getUser } from "./getUser.js";
 import register from "./register.js";
 import logout from "./auth/logout.js";
+import Login from "./login.js";
+import Checkout from "./checkout.js";
+import Orders from "./orders.js";
 
 env.config();
 
@@ -83,6 +86,13 @@ router.post('/register', register);
 
 // Define the GET /logout endpoint.
 router.get("/logout", logout);
+
+// Define the POST /login endpoint
+router.post("/login", Login);
+
+router.post("/checkout", Checkout);
+
+router.get("/orders", Orders);
 
 // GET endpoint to retrieve products.
 router.get("/products", async (req, res) => {
