@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5001
 
 // Define the origins from which the frontend will be making requests.
-const allowedOrigins = [ process.env.LOCALHOST, process.env.PHONE_ADDRESS ]
+const allowedOrigins = [ process.env.LOCALHOST ]
 
 // Configure CORS to allow requests from specified origins.
 app.use(cors({
