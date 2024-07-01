@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Checkout.css";
 import Navbar from "../navbar/Navbar";
 import { clearCart } from "../redux/action";
+import config from "../config";
 
 const Checkout = () => {
   const [firstName, setFirstName] = useState("");
@@ -44,7 +45,7 @@ const Checkout = () => {
     };
 
     try {
-      const checkoutUrl = "http://localhost:5000/checkout";
+      const checkoutUrl = `${config.backendURL}/checkout`;
       // Send order data to backend API
       const response = await axios.post(checkoutUrl, orderData, { withCredentials: true });
       console.log("Order placed successfully:", response.data);

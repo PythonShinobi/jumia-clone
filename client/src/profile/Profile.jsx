@@ -7,6 +7,7 @@ import "./Profile.css";
 import { useUser } from "../redux/hooks";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import config from "../config";
 
 const UserProfile = () => {
   const user = useUser(); // Use the useUser hook to get the current user.
@@ -16,7 +17,7 @@ const UserProfile = () => {
     // Fetch the order items from the backend when the component mounts.
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/orders", { withCredentials: true });
+        const response = await axios.get(`${config.backendURL}/orders`, { withCredentials: true });
         setOrders(response.data.orders);
       } catch (error) {
         console.error("Error fetching orders:", error);

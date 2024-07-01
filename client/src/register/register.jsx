@@ -7,6 +7,7 @@ import "./register.css";
 import { useUser } from "../redux/hooks.js";
 import Navbar from "../navbar/Navbar";
 import Form from "../components/Form";
+import config from "../config";
 
 const Register = () => {
   useUser({ redirectTo: "/", redirectIfFound: true });
@@ -31,7 +32,7 @@ const Register = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:5000/register", body);
+      const response = await axios.post(`${config.backendURL}/register`, body);
 
       if (response.status === 200) {
         // If registration is successful, set the success message.

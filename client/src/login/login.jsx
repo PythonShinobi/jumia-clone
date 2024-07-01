@@ -7,6 +7,7 @@ import "./login.css";
 import { useUser } from "../redux/hooks.js";
 import Navbar from "../navbar/Navbar";
 import Form from "../components/Form";
+import config from "../config.js";
 
 const Login = () => {
   // The `useUser` hook is employed to check if a user is already authenticated when they access the login page. 
@@ -31,7 +32,7 @@ const Login = () => {
       };
 
       // Make a POST request using axios with cookies.
-      const response = await axios.post("http://localhost:5000/login", body, { withCredentials: true });
+      const response = await axios.post(`${config.backendURL}/login`, body, { withCredentials: true });
 
       if (response.status === 200) {
         setSuccess("Login successful"); // Set success message.

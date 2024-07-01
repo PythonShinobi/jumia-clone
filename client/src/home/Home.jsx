@@ -9,6 +9,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import "./Home.css";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import config from "../config"
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://192.168.0.17:5000/products");
+        const response = await axios.get(`${config.backendURL}/products`);
         const productsData = response.data;
         setProducts(productsData);
 
@@ -76,7 +77,7 @@ const Home = () => {
                 <Carousel.Item key={product.id}>
                   <img
                     className="d-block w-100"
-                    src={`http://192.168.0.17:5000/uploads/${product.image}`}
+                    src={`${config.backendURL}/uploads/${product.image}`}
                     alt={product.name}
                     style={{ maxHeight: "800px", objectFit: "cover", objectPosition: "top" }}
                   />
@@ -116,7 +117,7 @@ const CategorySection = ({ category }) => {
   useEffect(() => {
     const fetchCategoryProducts = async () => {
       try {
-        const response = await axios.get(`http://192.168.0.17:5000/products/category/${category}`);
+        const response = await axios.get(`${config.backendURL}/products/category/${category}`);
         setCategoryProducts(response.data);
         setLoading(false); // Set loading to false when data is fetched.
       } catch (error) {
@@ -148,7 +149,7 @@ const CategorySection = ({ category }) => {
                 <CardMedia
                   component="img"
                   height="370"
-                  image={`http://192.168.0.17:5000/uploads/${product.image}`}
+                  image={`${config.backendURL}/uploads/${product.image}`}
                   alt={product.name}
                 />
                 <CardContent>

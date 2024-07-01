@@ -14,6 +14,7 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import { addCart } from "../redux/action";
 import { useUser } from "../redux/hooks"; // Import useUser hook to check user's authentication status
+import config from "../config";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -39,7 +40,7 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://192.168.0.17:5000/products/${id}`);
+        const response = await axios.get(`${config.backendURL}/products/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -50,7 +51,7 @@ const ProductDetailsPage = () => {
     // Function to fetch similar products based on category
     const fetchSimilarProducts = async () => {
       try {
-        const response = await axios.get(`http://192.168.0.17:5000/products/category/${product.category}`);
+        const response = await axios.get(`${config.backendURL}/products/category/${product.category}`);
         setSimilarProducts(response.data);
         setLoadingSimilarProducts(false);
       } catch (error) {
@@ -82,7 +83,7 @@ const ProductDetailsPage = () => {
             <CardMedia
               component="img"
               height="550"
-              image={`http://192.168.0.17:5000/uploads/${product.image}`}
+              image={`${config.backendURL}/uploads/${product.image}`}
               alt={product.name}
               style={{ objectFit: 'cover', width: '100%', border: '1px solid #ccc' }}
             />
@@ -129,7 +130,7 @@ const ProductDetailsPage = () => {
                   <CardMedia
                     component="img"
                     height="250"
-                    image={`http://192.168.0.17:5000/uploads/${similarProduct.image}`}
+                    image={`${config.backendURL}/uploads/${similarProduct.image}`}
                     alt={similarProduct.name}
                     style={{ objectFit: 'cover', width: '100%' }}
                   />

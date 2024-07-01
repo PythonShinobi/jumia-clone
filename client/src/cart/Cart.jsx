@@ -8,6 +8,7 @@ import { Add, Remove, Delete } from '@mui/icons-material';
 import './Cart.css';
 import Navbar from "../navbar/Navbar";
 import { addCart, delCart, removeCart } from "../redux/action";
+import config from "../config";
 
 const Cart = () => {
   const cart = useSelector((state) => state.handleCart);
@@ -49,7 +50,7 @@ const Cart = () => {
                         component="img"
                         alt={product.name}
                         height="240"                        
-                        image={`http://192.168.0.17:5000/uploads/${product.image}`}
+                        image={`${config.backendURL}/uploads/${product.image}`}
                         title={product.name}
                       />
                     </Grid>

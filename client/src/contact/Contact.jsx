@@ -6,6 +6,7 @@ import { Container, Typography, TextField, Button, Grid } from '@mui/material';
 import "./Contact.css";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import config from "../config";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://192.168.0.17:5000/send-email", formData, {
+      const response = await axios.post(`${config.backendURL}/send-email`, formData, {
         withCredentials: true // Ensure cookies are sent with the request
       });
       alert(response.data);      
