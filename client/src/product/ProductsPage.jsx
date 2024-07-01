@@ -8,6 +8,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useDispatch } from "react-redux";
 
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 import { addCart } from "../redux/action";
 import { useUser } from "../redux/hooks"; // Import useUser hook to check user's authentication status
 
@@ -201,6 +202,7 @@ const ProductsPage = () => {
           </div>
         )}
       </Container>
+      <Footer />
     </div>
   );
 };

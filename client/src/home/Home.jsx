@@ -8,6 +8,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import "./Home.css";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -160,6 +161,7 @@ const CategorySection = ({ category }) => {
           ))
         )}
       </Grid>
+      <Footer />
     </div>
   );
 };

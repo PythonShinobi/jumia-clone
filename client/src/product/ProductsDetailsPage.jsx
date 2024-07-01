@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import "./styles.css";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 import { addCart } from "../redux/action";
 import { useUser } from "../redux/hooks"; // Import useUser hook to check user's authentication status
 
@@ -149,6 +150,7 @@ const ProductDetailsPage = () => {
         )}
 
       </Container>
+      <Footer />
     </div>
   );
 };

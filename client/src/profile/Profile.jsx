@@ -6,6 +6,7 @@ import { Container, Typography, Card, CardContent, Grid, Divider } from '@mui/ma
 import "./Profile.css";
 import { useUser } from "../redux/hooks";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 const UserProfile = () => {
   const user = useUser(); // Use the useUser hook to get the current user.
@@ -77,6 +78,7 @@ const UserProfile = () => {
           ))}
         </Grid>
       </Container>
+      <Footer />
     </div>
   );
 };

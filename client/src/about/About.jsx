@@ -4,6 +4,7 @@ import { Container, Typography, Grid, Card, CardContent, CardMedia, Paper, Avata
 import { Email, Phone, LocationOn } from '@mui/icons-material';
 import "./about.css";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 const About = () => {
   return (
@@ -205,6 +206,7 @@ const About = () => {
           </Grid>
         </Grid>
       </Container>
+      <Footer />
     </div>
   );
 };

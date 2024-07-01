@@ -5,6 +5,7 @@ import { Container, Typography, TextField, Button, Grid } from '@mui/material';
 
 import "./Contact.css";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -91,6 +92,7 @@ const ContactPage = () => {
           </Grid>
         </form>
       </Container>
+      <Footer />
     </div>
   );
 };
