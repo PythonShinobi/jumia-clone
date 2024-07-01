@@ -173,7 +173,7 @@ router.post("/products", upload.single('image'), async (req, res) => {
       description: product.description, // Description of the product.
       category: product.category, // Category of the product.
       // Constructing the image URL using the server's port and the filename of the uploaded image.
-      image: `http://localhost:${process.env.SERVER_PORT}/uploads/${product.image}`,
+      image: `${process.env.BACKEND_URL}/uploads/${product.image}`,
       rating: product.rating, // Rating of the product.
     });
 
