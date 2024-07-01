@@ -1,13 +1,20 @@
 {
   "version": 2,
+  "builds": [{ "src": "server/**/*.js", "use": "@now/node-server" }],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "dest": "server/api/router.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "server/api/router.js"
     }
-  ]
+  ],
+  "functions": {
+    "api/router.js": {
+      "maxDuration": 5,
+      "memory": 512
+    }
+  }
 }
