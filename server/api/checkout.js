@@ -1,5 +1,4 @@
 // server/api/checkout.js
-import { Router } from "express";
 import nodemailer from "nodemailer";
 import env from "dotenv";
 
@@ -7,8 +6,6 @@ import db from "./db.js";
 import { findUserByEmail } from "./auth/user.js";
 
 env.config();
-
-const router = Router();
 
 // Create a Nodemailer transporter.
 const transporter = nodemailer.createTransport({
@@ -19,7 +16,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-router.post("/checkout", async (req, res) => {
+const Checkout = async (req, res) => {
   const { firstName, lastName, email, address, city, postalCode, cartItems } = req.body;
 
   try {
@@ -82,6 +79,6 @@ router.post("/checkout", async (req, res) => {
     console.error("Error placing order:", error);
     res.status(500).json({ message: "Error placing order", error });
   }
-});
+};
 
-export default router;
+export default Checkout;

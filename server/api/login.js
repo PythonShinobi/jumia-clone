@@ -1,12 +1,9 @@
 // server/api/login.js
-import { Router } from "express";
 import passport from 'passport';
 
 import { localStrategy } from './auth/password-local.js';
 import { setLoginSession } from './auth/auth.js';
 import setAdmin from "./middleware/setAdmin.js";
-
-const router = Router();
 
 // Register the local authentication strategy with Passport.
 // This tells Passport how to authenticate users using a username and password 
@@ -36,7 +33,7 @@ const authenticate = (strategy, req, res) =>
   });
 
 // Define a POST request handler for the /login endpoint.
-router.post('/login', async (req, res) => {  
+const Login = async (req, res) => {
   try {    
     // Attempt to authenticate the user using the local strategy.
     const user = await authenticate('local', req, res);        
@@ -60,6 +57,6 @@ router.post('/login', async (req, res) => {
     // Send an unauthorized response with the error message
     res.status(401).json({ message: error });
   }
-});
+};
 
-export default router;
+export default Login;

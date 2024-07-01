@@ -1,11 +1,7 @@
 // server/api/orders.js
-import { Router } from "express";
-
 import db from "./db.js";
 
-const router = Router()
-
-router.get("/orders", async (req, res) => {
+const Orders = async (req, res) => {
   try {
     // SQL query to get product_name, quantity, and price from the order_items table.
     const orderItemsQuery = `
@@ -23,6 +19,6 @@ router.get("/orders", async (req, res) => {
     console.error("Error fetching orders:", error);
     res.status(500).json({ message: "Error fetching orders", error });
   }
-});
+};
 
-export default router;
+export default Orders;
