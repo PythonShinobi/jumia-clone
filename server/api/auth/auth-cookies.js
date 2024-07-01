@@ -56,7 +56,7 @@ export const removeTokenCookie = (res) => {
  * @returns {object} An object containing parsed cookies.
  */
 export const parseCookies = (req) => {
-  // console.log('Cookies in request:', req.cookies);
+  console.log('Cookies in request:', req.cookies);
   if (req.cookies) {
     return req.cookies;
   } else {
