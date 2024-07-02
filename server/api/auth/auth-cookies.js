@@ -25,6 +25,7 @@ export const setTokenCookie = (res, token) => {
     secure: true,
     path: "/", // Path where the cookie is accessible.
     sameSite: "lax", // Restrict cookie to same site context (prevents CSRF attacks).
+    domain: ".vercel.app"  // Top-level domain
   });
 
   // console.log('Setting cookie:', cookie);
@@ -43,6 +44,7 @@ export const removeTokenCookie = (res) => {
   const cookie = serialize(TOKEN_NAME, "", {
     maxAge: -1, // Set maxAge to -1 to delete the cookie.
     path: "/", // Path where the cookie was accessible.
+    domain: "vercel.app", // Match the domain used in setTokenCookie
   });
 
   // Set the cookie header in the response to remove the cookie.
