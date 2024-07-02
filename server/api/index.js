@@ -16,21 +16,24 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5001
 
 // Define the origins from which the frontend will be making requests.
-const allowedOrigins = [ process.env.HOST ]
+const allowedOrigins = [ "https://jumia-clone-frontend.vercel.app" ];
 
-// Configure CORS to allow requests from specified origins.
-app.use(cors({
-	origin: function (origin, callback) {
-		// Check if the origin is included in the allowedOrigins array or if 
-    // it's undefined (which happens with same-origin requests).
-		if (!origin || allowedOrigins.includes(origin)) {
-			callback(null, true);  // Allow the request.
-		} else {
-			callback(new Error("Not allowed by CORS"));  // Deny the request.
-		}
-	},
-	credentials: true  // Allow cookies to be sent along with the request.
-}));
+// Create CORS options
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Check if the origin is included in the allowedOrigins array or 
+	// if it's undefined (which happens with same-origin requests).
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow the request.
+    } else {
+      callback(new Error("Not allowed by CORS")); // Deny the request.
+    }
+  },
+  credentials: true, // Allow cookies to be sent along with the request.
+};
+
+// Configure CORS middleware using the corsOptions object.
+app.use(cors(corsOptions));
 
 // Logging middleware: Log HTTP requests to the console in a development-friendly format.
 app.use(logger('dev'));
