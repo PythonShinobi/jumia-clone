@@ -35,7 +35,9 @@ const handleCart = (state = cart, action) => {
       return [];
 
     case "REMOVE_CART_ITEM":
-      return state.filter((item) => item.id !== action.payload.id);
+      newState = state.filter((item) => item.id !== action.payload.id);
+      localStorage.setItem("cart", JSON.stringify(newState));
+      return newState;
 
     default:
       return state;
