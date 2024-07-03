@@ -24,11 +24,11 @@ export const setTokenCookie = (res, token) => {
     httpOnly: true, // Cookie is accessible only by the web server.
     secure: true,
     path: "/", // Path where the cookie is accessible.
-    sameSite: "lax", // Restrict cookie to same site context (prevents CSRF attacks).
-    domain: ".vercel.app"  // Top-level domain
+    sameSite: "none",
+    domain: '.jumia-clone.vercel.app',
   });
 
-  // console.log('Setting cookie:', cookie);
+  console.log('Setting cookie:', cookie);
 
   // Set the cookie header in the response.
   res.setHeader("Set-Cookie", cookie);

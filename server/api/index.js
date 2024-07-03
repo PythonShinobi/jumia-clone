@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5001
 
 // Define the origins from which the frontend will be making requests.
-const allowedOrigins = [ "https://jumia-clone-frontend.vercel.app" ];
+const allowedOrigins = [ "https://frontend.jumia-clone.vercel.app" ];
 
 // Create CORS options
 const corsOptions = {
