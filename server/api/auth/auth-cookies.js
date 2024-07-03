@@ -22,7 +22,7 @@ export const setTokenCookie = (res, token) => {
     domain: '.vercel.app', // Shared domain for both subdomains
     maxAge: MAX_AGE, // Cookie expiration time in seconds.
     expires: new Date(Date.now() + MAX_AGE * 1000), // Exact expiration date.
-    httpOnly: true, // Cookie is accessible only by the web server.
+    httpOnly: false,
     secure: true,  // Only if using HTTPS
     path: "/", // Path where the cookie is accessible.
     sameSite: "none",
