@@ -32,7 +32,7 @@ const Login = () => {
       };
 
       // Make a POST request using axios with cookies.
-      const response = await axios.post(`${config.serverEndpoint}/login`, null, body, { withCredentials: true });
+      const response = await axios.post(`${config.serverEndpoint}/login`, body, { withCredentials: true });
 
       if (response.status === 200) {
         setSuccess("Login successful"); // Set success message.
