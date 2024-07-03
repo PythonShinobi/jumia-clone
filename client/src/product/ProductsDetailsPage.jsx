@@ -40,7 +40,7 @@ const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://jumia-clone-backend.vercel.app/products/${id}`);
+        const response = await axios.get(`https://backend.jumia-clone.vercel.app/products/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
@@ -51,7 +51,7 @@ const ProductDetailsPage = () => {
     // Function to fetch similar products based on category
     const fetchSimilarProducts = async () => {
       try {
-        const response = await axios.get(`https://jumia-clone-backend.vercel.app/products/category/${product.category}`);
+        const response = await axios.get(`https://backend.jumia-clone.vercel.app/products/category/${product.category}`);
         setSimilarProducts(response.data);
         setLoadingSimilarProducts(false);
       } catch (error) {
@@ -83,7 +83,7 @@ const ProductDetailsPage = () => {
             <CardMedia
               component="img"
               height="550"
-              image={`https://jumia-clone-backend.vercel.app/uploads/${product.image}`}
+              image={`https://backend.jumia-clone.vercel.app/uploads/${product.image}`}
               alt={product.name}
               style={{ objectFit: 'cover', width: '100%', border: '1px solid #ccc' }}
             />
@@ -130,7 +130,7 @@ const ProductDetailsPage = () => {
                   <CardMedia
                     component="img"
                     height="250"
-                    image={`https://jumia-clone-backend.vercel.app/uploads/${similarProduct.image}`}
+                    image={`https://backend.jumia-clone.vercel.app/uploads/${similarProduct.image}`}
                     alt={similarProduct.name}
                     style={{ objectFit: 'cover', width: '100%' }}
                   />

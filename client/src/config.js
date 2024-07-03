@@ -1,6 +1,6 @@
 // client/src/config.js
 const config = {
-  backendURL: "https://jumia-clone-backend.vercel.app"
+  backendURL: "https://backend.jumia-clone.vercel.app"
 };
 
 export default config;

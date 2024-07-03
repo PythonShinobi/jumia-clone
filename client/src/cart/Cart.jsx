@@ -50,7 +50,7 @@ const Cart = () => {
                         component="img"
                         alt={product.name}
                         height="240"                        
-                        image={`https://jumia-clone-backend.vercel.app/uploads/${product.image}`}
+                        image={`https://backend.jumia-clone.vercel.app/uploads/${product.image}`}
                         title={product.name}
                       />
                     </Grid>

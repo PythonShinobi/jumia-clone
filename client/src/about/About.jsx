@@ -41,7 +41,7 @@ const About = () => {
                 component="img"
                 alt="Hoodies"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718700238.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718700238.jpeg`}
                 title="Hoodies"
               />
               <CardContent>
@@ -57,7 +57,7 @@ const About = () => {
                 component="img"
                 alt="Light Lamps"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718697211.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718697211.jpeg`}
                 title="Light Lamps"
               />
               <CardContent>
@@ -73,7 +73,7 @@ const About = () => {
                 component="img"
                 alt="Accessories"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718699719.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718699719.jpeg`}
                 title="Accessories"
               />
               <CardContent>
@@ -89,7 +89,7 @@ const About = () => {
                 component="img"
                 alt="Shoes"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718864281.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718864281.jpeg`}
                 title="Shoes"
               />
               <CardContent>
@@ -105,7 +105,7 @@ const About = () => {
                 component="img"
                 alt="Shoes"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718865948.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718865948.jpeg`}
                 title="Shoes"
               />
               <CardContent>
@@ -121,7 +121,7 @@ const About = () => {
                 component="img"
                 alt="Shoes"
                 height="300"
-                image={`https://jumia-clone-backend.vercel.app/uploads/image-1718867958.jpeg`}
+                image={`https://backend.jumia-clone.vercel.app/uploads/image-1718867958.jpeg`}
                 title="Shoes"
               />
               <CardContent>
@@ -161,21 +161,21 @@ const About = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
             <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
-              <Avatar alt="Team Member" src={`https://jumia-clone-backend.vercel.app/uploads/alice-brown.jpg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
+              <Avatar alt="Team Member" src={`https://backend.jumia-clone.vercel.app/uploads/alice-brown.jpg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
               <Typography variant="h6">Alice Brown</Typography>
               <Typography variant="body2">CEO & Founder</Typography>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
-              <Avatar alt="Team Member" src={`https://jumia-clone-backend.vercel.app/uploads/david-green.jpg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
+              <Avatar alt="Team Member" src={`https://backend.jumia-clone.vercel.app/uploads/david-green.jpg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
               <Typography variant="h6">David Green</Typography>
               <Typography variant="body2">Head of Marketing</Typography>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
-              <Avatar alt="Team Member" src={`https://jumia-clone-backend.vercel.app/uploads/emma-white.jpeg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
+              <Avatar alt="Team Member" src={`https://backend.jumia-clone.vercel.app/uploads/emma-white.jpeg`} style={{ margin: 'auto', width: '100px', height: '100px' }} />
               <Typography variant="h6">Emma White</Typography>
               <Typography variant="body2">Lead Developer</Typography>
             </Paper>

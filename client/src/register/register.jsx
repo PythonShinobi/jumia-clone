@@ -32,7 +32,8 @@ const Register = () => {
         return;
       }
 
-      const response = await axios.post(`https://jumia-clone-backend.vercel.app/register`, body);
+      // Make a POST request to the /register route to the backend.
+      const response = await axios.post(`https://backend.jumia-clone.vercel.app/register`, body, { withCredentials: true });
 
       if (response.status === 200) {
         // If registration is successful, set the success message.
