@@ -26,7 +26,7 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`https://backend.jumia-clone.vercel.app/send-email`, formData, {
+      const response = await axios.post(`${config.serverEndpoint}/send-email`, formData, {
         withCredentials: true // Ensure cookies are sent with the request
       });
       alert(response.data);      

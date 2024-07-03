@@ -39,7 +39,7 @@ const ProductsPage = () => {
     const fetchProducts = async () => {
       try {
         // Fetch products from the API
-        const response = await axios.get(`https://backend.jumia-clone.vercel.app/products`);
+        const response = await axios.get(`${config.serverEndpoint}/products`);
         console.log(response.data);
         // Update state with fetched products and original products
         setProducts(response.data);        
@@ -100,7 +100,7 @@ const ProductsPage = () => {
   const deleteProduct = async (productId) => {
     try {
       // Make DELETE request to delete product by ID
-      await axios.delete(`https://backend.jumia-clone.vercel.app/products/${productId}`);
+      await axios.delete(`${config.serverEndpoint}/products/${productId}`);
       // Filter out the deleted product from the state
       const updatedProducts = products.filter(product => product.id !== productId);
       // Update state with the updated products list
@@ -153,7 +153,7 @@ const ProductsPage = () => {
                     <CardMedia
                       component="img"
                       height="350"
-                      image={`https://backend.jumia-clone.vercel.app/uploads/${product.image}`}
+                      image={`${config.serverEndpoint}/uploads/${product.image}`}
                       alt={product.name}
                       style={{ objectFit: 'cover', width: '100%' }}
                     />

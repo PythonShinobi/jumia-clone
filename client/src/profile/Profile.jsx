@@ -17,7 +17,7 @@ const UserProfile = () => {
     // Fetch the order items from the backend when the component mounts.
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`https://backend.jumia-clone.vercel.app/orders`, { withCredentials: true });
+        const response = await axios.get(`${config.serverEndpoint}/orders`, { withCredentials: true });
         setOrders(response.data.orders);
       } catch (error) {
         console.error("Error fetching orders:", error);

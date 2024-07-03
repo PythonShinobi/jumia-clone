@@ -38,7 +38,7 @@ export function useUser({ redirectTo, redirectIfFound } = {}) {
   const navigate = useNavigate();
 
   // Use the SWR hook to fetch user data from the /user endpoint.
-  const { data, error } = useSWR("https://backend.jumia-clone.vercel.app/user", fetcher);
+  const { data, error } = useSWR(`${config.serverEndpoint}/user`, fetcher);
   const user = data?.user;  // Extract user data from the response.
   const finished = Boolean(data);  // Check if the data fetching is complete.
   const hasUser = Boolean(user);  // Check if a user is present.  

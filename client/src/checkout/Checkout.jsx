@@ -45,7 +45,7 @@ const Checkout = () => {
     };
 
     try {
-      const checkoutUrl = `https://backend.jumia-clone.vercel.app/checkout`;
+      const checkoutUrl = `${config.serverEndpoint}/checkout`;
       // Send order data to backend API
       const response = await axios.post(checkoutUrl, orderData, { withCredentials: true });
       console.log("Order placed successfully:", response.data);

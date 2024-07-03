@@ -20,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`https://backend.jumia-clone.vercel.app/products`);
+        const response = await axios.get(`${config.serverEndpoint}/products`);
         const productsData = response.data;
         setProducts(productsData);
 
@@ -77,7 +77,7 @@ const Home = () => {
                 <Carousel.Item key={product.id}>
                   <img
                     className="d-block w-100"
-                    src={`https://backend.jumia-clone.vercel.app/uploads/${product.image}`}
+                    src={`${config.serverEndpoint}/uploads/${product.image}`}
                     alt={product.name}
                     style={{ maxHeight: "800px", objectFit: "cover", objectPosition: "top" }}
                   />
@@ -117,7 +117,7 @@ const CategorySection = ({ category }) => {
   useEffect(() => {
     const fetchCategoryProducts = async () => {
       try {
-        const response = await axios.get(`https://backend.jumia-clone.vercel.app/products/category/${category}`);
+        const response = await axios.get(`${config.serverEndpoint}/products/category/${category}`);
         setCategoryProducts(response.data);
         setLoading(false); // Set loading to false when data is fetched.
       } catch (error) {
@@ -149,7 +149,7 @@ const CategorySection = ({ category }) => {
                 <CardMedia
                   component="img"
                   height="370"
-                  image={`https://backend.jumia-clone.vercel.app/uploads/${product.image}`}
+                  image={`${config.serverEndpoint}/uploads/${product.image}`}
                   alt={product.name}
                 />
                 <CardContent>

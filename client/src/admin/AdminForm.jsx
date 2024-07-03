@@ -63,7 +63,7 @@ const AdminForm = () => {
 		data.append("rating", JSON.stringify(formData.rating));
 
 		try {
-			const response = await axios.post(`https://backend.jumia-clone.vercel.app/products`, data, {
+			const response = await axios.post(`${config.serverEndpoint}/products`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
