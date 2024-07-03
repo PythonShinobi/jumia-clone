@@ -30,7 +30,7 @@ const Navbar = () => {
   // Logout a user.
   const handleLogout = async () => {
     try {
-      await axios.get(`${config.backendURL}/logout`, { withCredentials: true });
+      await axios.get(`https://jumia-clone-backend.vercel.app/logout`, { withCredentials: true });
       dispatch(clearCart());  // Clear items from the cart when user logs out.
       navigate('/'); // Redirect to home page after logout.
       window.location.reload(); // Trigger a refresh.
