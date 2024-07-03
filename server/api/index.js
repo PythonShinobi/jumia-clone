@@ -30,6 +30,7 @@ const corsOptions = {
     }
   },
   credentials: true, // Allow cookies to be sent along with the request.
+  exposedHeaders: ['Set-Cookie'] // This will expose the Set-Cookie header.
 };
 
 // Configure CORS middleware using the corsOptions object.
