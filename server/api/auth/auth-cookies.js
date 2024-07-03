@@ -17,9 +17,10 @@ export const MAX_AGE = 60 * 60 * 24 * 60;
  * @returns {void} Sets the token cookie in the response header.
  */
 export const setTokenCookie = (res, token) => {
+  const domain = process.env.NODE_ENV === 'production' ? '.vercel.app' : '';
   // Create a cookie string with specified options and set it in the response header.
   const cookie = serialize(TOKEN_NAME, token, {
-    domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app',
+    domain: domain,
     maxAge: MAX_AGE, // Cookie expiration time in seconds.
     expires: new Date(Date.now() + MAX_AGE * 1000), // Exact expiration date.
     httpOnly: true,
