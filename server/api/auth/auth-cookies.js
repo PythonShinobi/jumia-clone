@@ -19,7 +19,7 @@ export const MAX_AGE = 60 * 60 * 24 * 60;
 export const setTokenCookie = (res, token) => {
   // Create a cookie string with specified options and set it in the response header.
   const cookie = serialize(TOKEN_NAME, token, {
-    domain: 'vercel.app', // Shared domain for both subdomains
+    domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app',
     maxAge: MAX_AGE, // Cookie expiration time in seconds.
     expires: new Date(Date.now() + MAX_AGE * 1000), // Exact expiration date.
     httpOnly: true,
@@ -42,7 +42,7 @@ export const setTokenCookie = (res, token) => {
 export const removeTokenCookie = (res) => {
   // Create a cookie string that immediately expires.
   const cookie = serialize(TOKEN_NAME, "", {
-    domain: "vercel.app", // Match the domain used in setTokenCookie
+    domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app',
     maxAge: -1, // Set maxAge to -1 to delete the cookie.
     path: "/", // Path where the cookie was accessible.
   });
