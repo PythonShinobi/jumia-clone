@@ -3,6 +3,7 @@ import { Router } from "express";
 import multer from "multer";
 import path from "path";
 import nodemailer from "nodemailer";
+import fs from "fs/promises";
 import env from "dotenv";
 
 import db from "./db.js";
@@ -93,6 +94,24 @@ router.post("/login", Login);
 router.post("/checkout", Checkout);
 
 router.get("/orders", Orders);
+
+// Define a route to serve images from the uploads folder
+router.get("/uploads/:imageName", async (req, res) => {
+  const { imageName } = req.params;
+  const imagePath = path.join(__dirname, "../uploads", imageName);
+
+  try {
+    // Check if the file exists
+    await fs.access(imagePath);
+
+    // Stream the image to the response
+    const stream = fs.createReadStream(imagePath);
+    stream.pipe(res);
+  } catch (error) {
+    console.error("Error fetching image:", error.message);
+    res.status(404).json({ error: "Image not found" });
+  }
+});
 
 // GET endpoint to retrieve products.
 router.get("/products", async (req, res) => {
