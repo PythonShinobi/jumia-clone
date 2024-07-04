@@ -26,7 +26,7 @@ export const setTokenCookie = (res, token) => {
     httpOnly: true,
     secure: true,  // Only if using HTTPS
     path: "/", // Path where the cookie is accessible.
-    sameSite: "strict",
+    sameSite: "none",
   });
 
   console.log('Setting cookie:', cookie);

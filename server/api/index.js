@@ -34,6 +34,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   Headers: true,
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  withCredentials: true,
 };
 
 // Configure CORS middleware using the corsOptions object.
