@@ -1,6 +1,5 @@
 // server/api/index.js
 import express from "express";
-import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import bodyParser from "body-parser";
@@ -55,7 +54,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Serve static files from the uploads directory
-app.use('/uploads', express.static('server/uploads/'));
+app.use('/uploads', express.static('uploads'));
 
 // Use the router.
 app.use("/", router);

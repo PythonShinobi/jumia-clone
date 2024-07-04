@@ -3,7 +3,6 @@ import { Router } from "express";
 import multer from "multer";
 import path from "path";
 import nodemailer from "nodemailer";
-import fs from "fs/promises";
 import env from "dotenv";
 
 import db from "./db.js";
