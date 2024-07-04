@@ -1,7 +1,6 @@
 // server/api/index.js
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import bodyParser from "body-parser";
@@ -19,10 +18,6 @@ const PORT = process.env.SERVER_PORT || 5001
 
 // Define the origins from which the frontend will be making requests.
 const allowedOrigins = [ process.env.HOST, process.env.PROJECT_URL ];
-
-// Get the directory name of the current module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Create CORS options
 const corsOptions = {
@@ -60,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Serve static files from the uploads directory
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use('/uploads', express.static('server/uploads/'));
 
 // Use the router.
 app.use("/", router);
