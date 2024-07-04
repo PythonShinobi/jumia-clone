@@ -54,9 +54,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Parse cookies attached to the HTTP requests.
 app.use(cookieParser());
 
-// Serve static files from the React build directory
-app.use(express.static(path.join(__dirname, '../../client/build')));
-
 // Serve static files from the uploads directory
 app.use('/uploads', express.static('uploads'));
 
