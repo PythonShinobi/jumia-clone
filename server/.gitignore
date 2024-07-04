@@ -19,6 +19,5 @@ yarn.lock
 # Ignore editor-specific files
 .vscode/
 .idea/
-.vercel
 
 package-lock.json
