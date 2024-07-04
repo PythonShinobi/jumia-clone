@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.SERVER_PORT || 5001
 
 // Define the origins from which the frontend will be making requests.
-const allowedOrigins = [ process.env.HOST ];
+const allowedOrigins = [ process.env.HOST, process.env.PROJECT_URL ];
 
 // Create CORS options
 const corsOptions = {
