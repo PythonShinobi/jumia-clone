@@ -17,7 +17,7 @@ export const MAX_AGE = 60 * 60 * 24 * 60;
  * @returns {void} Sets the token cookie in the response header.
  */
 export const setTokenCookie = (res, token) => {
-  const domain = process.env.NODE_ENV === 'production' ? '.vercel.app' : '';
+  const domain = process.env.NODE_ENV === 'production' ? 'frontend-jumia-clone.vercel.app' : 'localhost';
   // Create a cookie string with specified options and set it in the response header.
   const cookie = serialize(TOKEN_NAME, token, {
     domain: domain,
@@ -43,7 +43,7 @@ export const setTokenCookie = (res, token) => {
 export const removeTokenCookie = (res) => {
   // Create a cookie string that immediately expires.
   const cookie = serialize(TOKEN_NAME, "", {
-    domain: process.env.NODE_ENV === 'development' ? '.localhost' : '.vercel.app',
+    domain: process.env.NODE_ENV === 'production' ? 'frontend-jumia-clone.vercel.app' : 'localhost',
     maxAge: -1, // Set maxAge to -1 to delete the cookie.
     path: "/", // Path where the cookie was accessible.
   });
