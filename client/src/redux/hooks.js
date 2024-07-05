@@ -18,8 +18,19 @@ const fetcher = async (url) => {
     // domain and appends them to the request headers.
     const response = await axios.get(url, { withCredentials: true });    
 
-    // Extract the user data from the response and return it
-    return { user: response.data.user || null };
+    // Extract the user data from the response and return it.
+    const user = response.data.user || null;
+
+    // Check if there are any cookies in the response header and set them manually
+    const setCookieHeader = response.headers['set-cookie'];
+    if (setCookieHeader) {
+      setCookieHeader.forEach(cookie => {
+        document.cookie = cookie;
+      });
+    }
+
+    // Return the user object.
+    return { user };
   } catch (error) {
     // Handle any errors that occur during the request
     console.error('Error fetching user data:', error);
