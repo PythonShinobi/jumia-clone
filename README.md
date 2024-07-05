@@ -20,7 +20,6 @@ This project aims to create a robust E-commerce website that handles both client
 * **User Authentication** : Allows users to register, login, and manage their accounts securely.
 * **Admin Dashboard** : Provides functionalities for admin to add, update, and delete products.
 * **Product Management** : Enables listing of products with details and images.
-* **Order Processing** : Facilitates placing orders, tracking order status, and order history.
 * **Responsive Design** : Ensures a seamless experience across various devices
 
 ### Prerequisites
