@@ -23,7 +23,7 @@ export const setTokenCookie = (res, token) => {
     domain: domain,
     maxAge: MAX_AGE, // Cookie expiration time in seconds.
     expires: new Date(Date.now() + MAX_AGE * 1000), // Exact expiration date.
-    httpOnly: true,
+    httpOnly: false,
     secure: true,  // Only if using HTTPS
     path: "/", // Path where the cookie is accessible.
     sameSite: "none",
