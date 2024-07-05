@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
 // Mutler setup for handling file uploads.
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {    
-    cb(null, 'uploads/');  // Directory to store the uploaded files.
+    cb(null, "api/uploads");  // Directory to store the uploaded files.
   },
   filename: (req, file, cb) => {
     const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds

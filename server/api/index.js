@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Serve static files from the uploads directory
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('api/uploads'));
 
 // Use the router.
 app.use("/", router);
