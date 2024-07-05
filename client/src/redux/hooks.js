@@ -26,6 +26,8 @@ const fetcher = async (url) => {
     if (setCookieHeader) {
       setCookieHeader.forEach(cookie => {
         document.cookie = cookie;
+
+        console.log(document.cookie);
       });
     }
 
